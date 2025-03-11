@@ -1,0 +1,78 @@
+{
+  "header": {
+    "marketplace": "Marketplace",
+    "login": "Login / Register",
+    "search": "Search for services, providers, or categories..."
+  },
+  "home": {
+    "hero": {
+      "title": "Find the Perfect Service for Your Needs",
+      "subtitle": "Discover top-rated service providers across multiple categories"
+    },
+    "categories": {
+      "title": "Our Services",
+      "explore": "Explore"
+    },
+    "featured": {
+      "title": "Featured Services",
+      "service": "Featured Service"
+    },
+    "testimonials": {
+      "title": "What Our Customers Say",
+      "homeowner": "Homeowner",
+      "businessOwner": "Business Owner",
+      "student": "Student"
+    },
+    "footer": {
+      "categories": "Categories",
+      "company": "Company",
+      "legal": "Legal",
+      "rights": "All rights reserved"
+    }
+  },
+  "categories": {
+    "restaurants": "Restaurants",
+    "stores": "Stores",
+    "maintenance": "Maintenance",
+    "travel": "Travel",
+    "delivery": "Delivery",
+    "realEstate": "Real Estate"
+  },
+  "auth": {
+    "login": "Login to Your Account",
+    "register": "Create an Account",
+    "welcomeBack": "Welcome back! Please enter your details.",
+    "joinUs": "Join our marketplace to discover amazing services.",
+    "fullName": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "continueWith": "Or continue with",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?"
+  },
+  "cart": {
+    "yourCart": "Your Cart",
+    "item": "item",
+    "items": "items",
+    "empty": "Your cart is empty",
+    "browse": "Browse Services",
+    "subtotal": "Subtotal",
+    "tax": "Tax",
+    "total": "Total",
+    "checkout": "Proceed to Checkout"
+  },
+  "profile": {
+    "myProfile": "My Profile",
+    "settings": "Settings",
+    "verification": "Identity Verification",
+    "verified": "Verified",
+    "myAccount": "My Account",
+    "notifications": "Notifications",
+    "favorites": "Favorites",
+    "paymentMethods": "Payment Methods",
+    "shoppingCart": "Shopping Cart",
+    "logout": "Logout"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "header": {
+    "marketplace": "Marché",
+    "login": "Connexion / Inscription",
+    "search": "Rechercher des services, des prestataires ou des catégories..."
+  },
+  "home": {
+    "hero": {
+      "title": "Trouvez le service parfait pour vos besoins",
+      "subtitle": "Découvrez des prestataires de services bien notés dans plusieurs catégories"
+    },
+    "categories": {
+      "title": "Nos Services",
+      "explore": "Explorer"
+    },
+    "featured": {
+      "title": "Services en vedette",
+      "service": "Service en vedette"
+    },
+    "testimonials": {
+      "title": "Ce que disent nos clients",
+      "homeowner": "Propriétaire",
+      "businessOwner": "Chef d'entreprise",
+      "student": "Étudiant"
+    },
+    "footer": {
+      "categories": "Catégories",
+      "company": "Entreprise",
+      "legal": "Mentions légales",
+      "rights": "Tous droits réservés"
+    }
+  },
+  "categories": {
+    "restaurants": "Restaurants",
+    "stores": "Magasins",
+    "maintenance": "Maintenance",
+    "travel": "Voyage",
+    "delivery": "Livraison",
+    "realEstate": "Immobilier"
+  },
+  "auth": {
+    "login": "Connectez-vous à votre compte",
+    "register": "Créer un compte",
+    "welcomeBack": "Bienvenue ! Veuillez entrer vos coordonnées.",
+    "joinUs": "Rejoignez notre marché pour découvrir des services incroyables.",
+    "fullName": "Nom complet",
+    "email": "Email",
+    "password": "Mot de passe",
+    "signIn": "Se connecter",
+    "signUp": "S'inscrire",
+    "continueWith": "Ou continuer avec",
+    "noAccount": "Vous n'avez pas de compte ?",
+    "haveAccount": "Vous avez déjà un compte ?"
+  },
+  "cart": {
+    "yourCart": "Votre panier",
+    "item": "article",
+    "items": "articles",
+    "empty": "Votre panier est vide",
+    "browse": "Parcourir les services",
+    "subtotal": "Sous-total",
+    "tax": "Taxe",
+    "total": "Total",
+    "checkout": "Procéder au paiement"
+  },
+  "profile": {
+    "myProfile": "Mon profil",
+    "settings": "Paramètres",
+    "verification": "Vérification d'identité",
+    "verified": "Vérifié",
+    "myAccount": "Mon compte",
+    "notifications": "Notifications",
+    "favorites": "Favoris",
+    "paymentMethods": "Moyens de paiement",
+    "shoppingCart": "Panier",
+    "logout": "Déconnexion"
+  }
+}

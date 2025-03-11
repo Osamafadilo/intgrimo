@@ -1,0 +1,78 @@
+{
+  "header": {
+    "marketplace": "Marktplatz",
+    "login": "Anmelden / Registrieren",
+    "search": "Suche nach Dienstleistungen, Anbietern oder Kategorien..."
+  },
+  "home": {
+    "hero": {
+      "title": "Finden Sie den perfekten Service für Ihre Bedürfnisse",
+      "subtitle": "Entdecken Sie hochbewertete Dienstleister in verschiedenen Kategorien"
+    },
+    "categories": {
+      "title": "Unsere Dienstleistungen",
+      "explore": "Erkunden"
+    },
+    "featured": {
+      "title": "Ausgewählte Dienstleistungen",
+      "service": "Ausgewählter Service"
+    },
+    "testimonials": {
+      "title": "Was unsere Kunden sagen",
+      "homeowner": "Hausbesitzer",
+      "businessOwner": "Geschäftsinhaber",
+      "student": "Student"
+    },
+    "footer": {
+      "categories": "Kategorien",
+      "company": "Unternehmen",
+      "legal": "Rechtliches",
+      "rights": "Alle Rechte vorbehalten"
+    }
+  },
+  "categories": {
+    "restaurants": "Restaurants",
+    "stores": "Geschäfte",
+    "maintenance": "Wartung",
+    "travel": "Reisen",
+    "delivery": "Lieferung",
+    "realEstate": "Immobilien"
+  },
+  "auth": {
+    "login": "Melden Sie sich bei Ihrem Konto an",
+    "register": "Konto erstellen",
+    "welcomeBack": "Willkommen zurück! Bitte geben Sie Ihre Daten ein.",
+    "joinUs": "Treten Sie unserem Marktplatz bei, um erstaunliche Dienstleistungen zu entdecken.",
+    "fullName": "Vollständiger Name",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "continueWith": "Oder fortfahren mit",
+    "noAccount": "Sie haben noch kein Konto?",
+    "haveAccount": "Sie haben bereits ein Konto?"
+  },
+  "cart": {
+    "yourCart": "Ihr Warenkorb",
+    "item": "Artikel",
+    "items": "Artikel",
+    "empty": "Ihr Warenkorb ist leer",
+    "browse": "Dienstleistungen durchsuchen",
+    "subtotal": "Zwischensumme",
+    "tax": "Steuer",
+    "total": "Gesamt",
+    "checkout": "Zur Kasse gehen"
+  },
+  "profile": {
+    "myProfile": "Mein Profil",
+    "settings": "Einstellungen",
+    "verification": "Identitätsverifizierung",
+    "verified": "Verifiziert",
+    "myAccount": "Mein Konto",
+    "notifications": "Benachrichtigungen",
+    "favorites": "Favoriten",
+    "paymentMethods": "Zahlungsmethoden",
+    "shoppingCart": "Warenkorb",
+    "logout": "Abmelden"
+  }
+}

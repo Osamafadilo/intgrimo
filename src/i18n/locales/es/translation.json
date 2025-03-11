@@ -1,0 +1,78 @@
+{
+  "header": {
+    "marketplace": "Mercado",
+    "login": "Iniciar sesión / Registrarse",
+    "search": "Buscar servicios, proveedores o categorías..."
+  },
+  "home": {
+    "hero": {
+      "title": "Encuentra el servicio perfecto para tus necesidades",
+      "subtitle": "Descubre proveedores de servicios mejor valorados en múltiples categorías"
+    },
+    "categories": {
+      "title": "Nuestros Servicios",
+      "explore": "Explorar"
+    },
+    "featured": {
+      "title": "Servicios destacados",
+      "service": "Servicio destacado"
+    },
+    "testimonials": {
+      "title": "Lo que dicen nuestros clientes",
+      "homeowner": "Propietario",
+      "businessOwner": "Dueño de negocio",
+      "student": "Estudiante"
+    },
+    "footer": {
+      "categories": "Categorías",
+      "company": "Empresa",
+      "legal": "Legal",
+      "rights": "Todos los derechos reservados"
+    }
+  },
+  "categories": {
+    "restaurants": "Restaurantes",
+    "stores": "Tiendas",
+    "maintenance": "Mantenimiento",
+    "travel": "Viajes",
+    "delivery": "Entrega",
+    "realEstate": "Bienes raíces"
+  },
+  "auth": {
+    "login": "Inicia sesión en tu cuenta",
+    "register": "Crear una cuenta",
+    "welcomeBack": "¡Bienvenido de nuevo! Por favor, introduce tus datos.",
+    "joinUs": "Únete a nuestro mercado para descubrir servicios increíbles.",
+    "fullName": "Nombre completo",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "signIn": "Iniciar sesión",
+    "signUp": "Registrarse",
+    "continueWith": "O continuar con",
+    "noAccount": "¿No tienes una cuenta?",
+    "haveAccount": "¿Ya tienes una cuenta?"
+  },
+  "cart": {
+    "yourCart": "Tu carrito",
+    "item": "artículo",
+    "items": "artículos",
+    "empty": "Tu carrito está vacío",
+    "browse": "Explorar servicios",
+    "subtotal": "Subtotal",
+    "tax": "Impuesto",
+    "total": "Total",
+    "checkout": "Proceder al pago"
+  },
+  "profile": {
+    "myProfile": "Mi perfil",
+    "settings": "Configuración",
+    "verification": "Verificación de identidad",
+    "verified": "Verificado",
+    "myAccount": "Mi cuenta",
+    "notifications": "Notificaciones",
+    "favorites": "Favoritos",
+    "paymentMethods": "Métodos de pago",
+    "shoppingCart": "Carrito de compras",
+    "logout": "Cerrar sesión"
+  }
+}

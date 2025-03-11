@@ -1,0 +1,78 @@
+{
+  "header": {
+    "marketplace": "سوق",
+    "login": "تسجيل الدخول / التسجيل",
+    "search": "ابحث عن خدمات أو مزودين أو فئات..."
+  },
+  "home": {
+    "hero": {
+      "title": "اعثر على الخدمة المثالية لاحتياجاتك",
+      "subtitle": "اكتشف مزودي الخدمات الأعلى تقييماً عبر فئات متعددة"
+    },
+    "categories": {
+      "title": "خدماتنا",
+      "explore": "استكشاف"
+    },
+    "featured": {
+      "title": "الخدمات المميزة",
+      "service": "خدمة مميزة"
+    },
+    "testimonials": {
+      "title": "ماذا يقول عملاؤنا",
+      "homeowner": "مالك منزل",
+      "businessOwner": "صاحب عمل",
+      "student": "طالب"
+    },
+    "footer": {
+      "categories": "الفئات",
+      "company": "الشركة",
+      "legal": "قانوني",
+      "rights": "جميع الحقوق محفوظة"
+    }
+  },
+  "categories": {
+    "restaurants": "مطاعم",
+    "stores": "متاجر",
+    "maintenance": "صيانة",
+    "travel": "سفر",
+    "delivery": "توصيل",
+    "realEstate": "عقارات"
+  },
+  "auth": {
+    "login": "تسجيل الدخول إلى حسابك",
+    "register": "إنشاء حساب",
+    "welcomeBack": "مرحبًا بعودتك! يرجى إدخال بياناتك.",
+    "joinUs": "انضم إلى سوقنا لاكتشاف خدمات مذهلة.",
+    "fullName": "الاسم الكامل",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "signIn": "تسجيل الدخول",
+    "signUp": "التسجيل",
+    "continueWith": "أو المتابعة باستخدام",
+    "noAccount": "ليس لديك حساب؟",
+    "haveAccount": "لديك حساب بالفعل؟"
+  },
+  "cart": {
+    "yourCart": "سلة التسوق الخاصة بك",
+    "item": "عنصر",
+    "items": "عناصر",
+    "empty": "سلة التسوق فارغة",
+    "browse": "تصفح الخدمات",
+    "subtotal": "المجموع الفرعي",
+    "tax": "الضريبة",
+    "total": "الإجمالي",
+    "checkout": "المتابعة إلى الدفع"
+  },
+  "profile": {
+    "myProfile": "ملفي الشخصي",
+    "settings": "الإعدادات",
+    "verification": "التحقق من الهوية",
+    "verified": "تم التحقق",
+    "myAccount": "حسابي",
+    "notifications": "الإشعارات",
+    "favorites": "المفضلة",
+    "paymentMethods": "طرق الدفع",
+    "shoppingCart": "سلة التسوق",
+    "logout": "تسجيل الخروج"
+  }
+}
