@@ -6,6 +6,10 @@ import StoresPage from "./StoresPage";
 import StoreDetailPage from "./StoreDetailPage";
 import GroceryPage from "./GroceryPage";
 import GroceryDetailPage from "./GroceryDetailPage";
+import MaintenancePage from "./MaintenancePage";
+import MaintenanceDetailPage from "./MaintenanceDetailPage";
+import ServiceCategoryPage from "./ServiceCategoryPage";
+import CheckoutPage from "./CheckoutPage";
 
 export {
   RealEstatePage,
@@ -16,4 +20,8 @@ export {
   StoreDetailPage,
   GroceryPage,
   GroceryDetailPage,
+  MaintenancePage,
+  MaintenanceDetailPage,
+  ServiceCategoryPage,
+  CheckoutPage,
 };

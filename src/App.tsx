@@ -10,32 +10,45 @@ import {
   StoreDetailPage,
   GroceryPage,
   GroceryDetailPage,
+  MaintenancePage,
+  MaintenanceDetailPage,
+  ServiceCategoryPage,
+  CheckoutPage,
 } from "./pages";
 import routes from "tempo-routes";
 
 function App() {
   return (
     <Suspense fallback={<p>Loading...</p>}>
-      <>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/services/real-estate" element={<RealEstatePage />} />
-          <Route
-            path="/services/real-estate/:id"
-            element={<RealEstateDetailPage />}
-          />
-          <Route path="/services/restaurants" element={<RestaurantsPage />} />
-          <Route
-            path="/services/restaurants/:id"
-            element={<RestaurantDetailPage />}
-          />
-          <Route path="/services/stores" element={<StoresPage />} />
-          <Route path="/services/stores/:id" element={<StoreDetailPage />} />
-          <Route path="/services/grocery" element={<GroceryPage />} />
-          <Route path="/services/grocery/:id" element={<GroceryDetailPage />} />
-        </Routes>
-        {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
-      </>
+      {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/services/real-estate" element={<RealEstatePage />} />
+        <Route
+          path="/services/real-estate/:id"
+          element={<RealEstateDetailPage />}
+        />
+        <Route path="/services/restaurants" element={<RestaurantsPage />} />
+        <Route
+          path="/services/restaurants/:id"
+          element={<RestaurantDetailPage />}
+        />
+        <Route path="/services/stores" element={<StoresPage />} />
+        <Route path="/services/stores/:id" element={<StoreDetailPage />} />
+        <Route path="/services/grocery" element={<GroceryPage />} />
+        <Route path="/services/grocery/:id" element={<GroceryDetailPage />} />
+        <Route path="/services/maintenance" element={<MaintenancePage />} />
+        <Route
+          path="/services/maintenance/:id"
+          element={<MaintenanceDetailPage />}
+        />
+        <Route
+          path="/services/category/:category"
+          element={<ServiceCategoryPage />}
+        />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        {import.meta.env.VITE_TEMPO && <Route path="/tempobook/*" />}
+      </Routes>
     </Suspense>
   );
 }

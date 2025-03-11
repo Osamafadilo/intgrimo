@@ -49,6 +49,14 @@ const getServicePath = (title: string): string => {
     return "/services/real-estate";
   } else if (normalizedTitle === "stores") {
     return "/services/stores";
+  } else if (normalizedTitle === "maintenance") {
+    return "/services/maintenance";
+  } else if (normalizedTitle === "plumbing") {
+    return "/services/maintenance?category=plumbing";
+  } else if (normalizedTitle === "electrical") {
+    return "/services/maintenance?category=electrical";
+  } else if (normalizedTitle === "cleaning") {
+    return "/services/maintenance?category=cleaning";
   }
 
   return `/services/${normalizedTitle}`;

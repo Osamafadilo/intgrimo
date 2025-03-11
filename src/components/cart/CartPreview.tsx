@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   Card,
@@ -10,14 +11,26 @@ import {
 } from "../ui/card";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
-import { ShoppingCart, Trash2, Plus, Minus } from "lucide-react";
+import { Badge } from "../ui/badge";
+import {
+  ShoppingCart,
+  Trash2,
+  Plus,
+  Minus,
+  Phone,
+  MessageCircle,
+} from "lucide-react";
 
 interface CartItem {
   id: string;
-  name: string;
+  workerId: string;
+  workerName: string;
+  workerImage: string;
+  service: string;
   price: number;
-  quantity: number;
-  image?: string;
+  date: string;
+  time: string;
+  status: string;
 }
 
 interface CartPreviewProps {
@@ -25,142 +38,203 @@ interface CartPreviewProps {
   onCheckout?: () => void;
   onRemoveItem?: (id: string) => void;
   onUpdateQuantity?: (id: string, quantity: number) => void;
+  onClose?: () => void;
 }
 
 const CartPreview = ({
-  items = [
-    {
-      id: "1",
-      name: "Home Cleaning Service",
-      price: 120,
-      quantity: 1,
-      image:
-        "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=300&q=80",
-    },
-    {
-      id: "2",
-      name: "Plumbing Repair",
-      price: 85,
-      quantity: 1,
-      image:
-        "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=300&q=80",
-    },
-  ],
+  items = [],
   onCheckout = () => console.log("Proceeding to checkout"),
   onRemoveItem = (id) => console.log(`Removing item ${id}`),
   onUpdateQuantity = (id, quantity) =>
     console.log(`Updating quantity for ${id} to ${quantity}`),
+  onClose,
 }: CartPreviewProps) => {
   const { t } = useTranslation();
-  const subtotal = items.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0,
-  );
-  const tax = subtotal * 0.05; // 5% tax
-  const total = subtotal + tax;
+  const [cartItems, setCartItems] = useState<CartItem[]>(items);
+
+  // Load cart items from localStorage
+  useEffect(() => {
+    const storedCart = localStorage.getItem("serviceCart");
+    if (storedCart) {
+      setCartItems(JSON.parse(storedCart));
+    }
+  }, []);
+
+  // Calculate total price
+  const calculateTotal = () => {
+    return cartItems.reduce((total, item) => total + item.price, 0);
+  };
+
+  // Handle contact via phone
+  const handlePhoneContact = (workerId: string) => {
+    window.location.href = `tel:+971501234567`;
+  };
+
+  // Handle contact via WhatsApp
+  const handleWhatsAppContact = (workerId: string) => {
+    window.open(`https://wa.me/+971501234567`, "_blank");
+  };
+
+  // Remove item from cart
+  const handleRemoveItem = (id: string) => {
+    const updatedCart = cartItems.filter((item) => item.id !== id);
+    setCartItems(updatedCart);
+    localStorage.setItem("serviceCart", JSON.stringify(updatedCart));
+    onRemoveItem(id);
+  };
+
+  if (cartItems.length === 0) {
+    return (
+      <Card className="w-[350px] h-[400px] overflow-hidden flex flex-col bg-white">
+        <CardHeader className="pb-2">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <ShoppingCart className="h-5 w-5 mr-2 text-primary" />
+              <CardTitle className="text-lg">
+                {t("cart.yourCart") || "Your Cart"}
+              </CardTitle>
+            </div>
+            {onClose && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={onClose}
+                className="h-8 w-8 p-0"
+              >
+                <span>×</span>
+              </Button>
+            )}
+          </div>
+          <CardDescription className="text-sm text-gray-500">
+            0 {t("cart.items") || "items"} in your cart
+          </CardDescription>
+        </CardHeader>
+
+        <CardContent className="flex-grow flex flex-col items-center justify-center">
+          <ShoppingCart className="h-12 w-12 text-gray-300 mb-2" />
+          <p className="text-gray-500">
+            {t("cart.empty") || "Your cart is empty"}
+          </p>
+          <Button variant="link" className="mt-2">
+            {t("cart.browse") || "Browse Services"}
+          </Button>
+        </CardContent>
+      </Card>
+    );
+  }
 
   return (
     <Card className="w-[350px] h-[400px] overflow-hidden flex flex-col bg-white">
       <CardHeader className="pb-2">
-        <div className="flex items-center">
-          <ShoppingCart className="h-5 w-5 mr-2 text-primary" />
-          <CardTitle className="text-lg">{t("cart.yourCart")}</CardTitle>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center">
+            <ShoppingCart className="h-5 w-5 mr-2 text-primary" />
+            <CardTitle className="text-lg">
+              {t("cart.yourCart") || "Your Cart"}
+            </CardTitle>
+          </div>
+          {onClose && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onClose}
+              className="h-8 w-8 p-0"
+            >
+              <span>×</span>
+            </Button>
+          )}
         </div>
         <CardDescription className="text-sm text-gray-500">
-          {items.length} {items.length === 1 ? t("cart.item") : t("cart.items")}{" "}
+          {cartItems.length}{" "}
+          {cartItems.length === 1
+            ? t("cart.item") || "item"
+            : t("cart.items") || "items"}{" "}
           in your cart
         </CardDescription>
       </CardHeader>
 
       <CardContent className="flex-grow overflow-y-auto">
-        {items.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-full text-center">
-            <ShoppingCart className="h-12 w-12 text-gray-300 mb-2" />
-            <p className="text-gray-500">{t("cart.empty")}</p>
-            <Button variant="link" className="mt-2">
-              {t("cart.browse")}
-            </Button>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            {items.map((item) => (
-              <div key={item.id} className="flex items-start space-x-3">
-                {item.image && (
-                  <div className="h-14 w-14 rounded-md overflow-hidden flex-shrink-0">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="h-full w-full object-cover"
-                    />
+        <div className="space-y-4">
+          {cartItems.map((item) => (
+            <div key={item.id} className="border rounded-md p-3">
+              <div className="flex items-start gap-3">
+                <img
+                  src={item.workerImage}
+                  alt={item.workerName}
+                  className="w-12 h-12 rounded-md object-cover"
+                />
+                <div className="flex-1">
+                  <div className="flex justify-between">
+                    <h4 className="font-medium">{item.service}</h4>
+                    <Badge
+                      className={`${item.status === "Pending Confirmation" ? "bg-yellow-100 text-yellow-800" : "bg-green-100 text-green-800"}`}
+                    >
+                      {item.status === "Pending Confirmation"
+                        ? "في انتظار التأكيد"
+                        : "تم التأكيد"}
+                    </Badge>
                   </div>
-                )}
-                <div className="flex-grow">
-                  <h4 className="text-sm font-medium">{item.name}</h4>
-                  <div className="flex items-center justify-between mt-1">
-                    <div className="flex items-center space-x-2">
-                      <button
-                        onClick={() =>
-                          onUpdateQuantity(
-                            item.id,
-                            Math.max(1, item.quantity - 1),
-                          )
-                        }
-                        className="h-6 w-6 rounded-full flex items-center justify-center bg-gray-100 hover:bg-gray-200"
+                  <p className="text-sm text-gray-600">{item.workerName}</p>
+                  <div className="flex items-center gap-2 text-xs text-gray-500 mt-1">
+                    {item.date && (
+                      <span>{new Date(item.date).toLocaleDateString()}</span>
+                    )}
+                    {item.time && <span>{item.time}</span>}
+                  </div>
+                  <div className="flex justify-between items-center mt-2">
+                    <span className="font-bold text-primary">
+                      AED {item.price}
+                    </span>
+                    <div className="flex gap-1">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="h-7 px-2 text-xs"
+                        onClick={() => handlePhoneContact(item.workerId)}
                       >
-                        <Minus className="h-3 w-3" />
-                      </button>
-                      <span className="text-sm">{item.quantity}</span>
-                      <button
-                        onClick={() =>
-                          onUpdateQuantity(item.id, item.quantity + 1)
-                        }
-                        className="h-6 w-6 rounded-full flex items-center justify-center bg-gray-100 hover:bg-gray-200"
+                        <Phone className="h-3 w-3 mr-1" /> اتصال
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="h-7 px-2 text-xs bg-green-50 text-green-700 border-green-200 hover:bg-green-100"
+                        onClick={() => handleWhatsAppContact(item.workerId)}
                       >
-                        <Plus className="h-3 w-3" />
-                      </button>
-                    </div>
-                    <div className="flex items-center">
-                      <span className="text-sm font-medium">
-                        ${item.price.toFixed(2)}
-                      </span>
-                      <button
-                        onClick={() => onRemoveItem(item.id)}
-                        className="ml-2 text-gray-400 hover:text-red-500"
+                        <MessageCircle className="h-3 w-3 mr-1" /> واتساب
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        className="h-7 w-7 p-0 text-gray-400 hover:text-red-500"
+                        onClick={() => handleRemoveItem(item.id)}
                       >
-                        <Trash2 className="h-4 w-4" />
-                      </button>
+                        <Trash2 className="h-3 w-3" />
+                      </Button>
                     </div>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        )}
+            </div>
+          ))}
+        </div>
       </CardContent>
 
       <CardFooter className="flex-shrink-0 border-t pt-4 flex flex-col">
         <div className="w-full space-y-1 text-sm">
-          <div className="flex justify-between">
-            <span className="text-gray-500">{t("cart.subtotal")}</span>
-            <span>${subtotal.toFixed(2)}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-500">{t("cart.tax")} (5%)</span>
-            <span>${tax.toFixed(2)}</span>
-          </div>
-          <Separator className="my-2" />
-          <div className="flex justify-between font-medium">
-            <span>{t("cart.total")}</span>
-            <span>${total.toFixed(2)}</span>
+          <div className="flex justify-between font-bold">
+            <span>{t("cart.total") || "Total"}:</span>
+            <span>AED {calculateTotal().toFixed(2)}</span>
           </div>
         </div>
-        <Button
-          onClick={onCheckout}
-          className="w-full mt-4"
-          disabled={items.length === 0}
-        >
-          {t("cart.checkout")}
-        </Button>
+        <Link to="/checkout" className="w-full">
+          <Button
+            onClick={onCheckout}
+            className="w-full mt-4"
+            disabled={cartItems.length === 0}
+          >
+            {t("cart.checkout") || "Checkout"}
+          </Button>
+        </Link>
       </CardFooter>
     </Card>
   );

@@ -65,6 +65,7 @@ const Header = ({
   const [showCartPreview, setShowCartPreview] = useState(false);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
 
   const handleLanguageChange = (langCode: string) => {
     i18n.changeLanguage(langCode);
@@ -91,6 +92,29 @@ const Header = ({
       document.documentElement.lang = currentLanguage;
     }
     i18n.changeLanguage(currentLanguage);
+  }, []);
+
+  // Get cart count from localStorage
+  useEffect(() => {
+    const updateCartCount = () => {
+      const storedCart = localStorage.getItem("serviceCart");
+      if (storedCart) {
+        const cart = JSON.parse(storedCart);
+        setCartCount(cart.length);
+      } else {
+        setCartCount(0);
+      }
+    };
+
+    // Initial count
+    updateCartCount();
+
+    // Check every second for changes (for same-tab updates)
+    const interval = setInterval(updateCartCount, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   const getCurrentLanguageName = () => {
@@ -178,31 +202,29 @@ const Header = ({
           )}
 
           {/* Shopping Cart */}
-          <DropdownMenu
-            open={showCartPreview}
-            onOpenChange={setShowCartPreview}
-          >
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="relative text-sky-700 hover:text-sky-800 hover:bg-sky-200"
-              >
-                <ShoppingCart className="h-5 w-5" />
-                {cartItemCount > 0 && (
-                  <Badge
-                    className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-red-500"
-                    variant="destructive"
-                  >
-                    {cartItemCount}
-                  </Badge>
-                )}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-80 p-0">
-              <CartPreview />
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <div className="relative">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative text-sky-700 hover:text-sky-800 hover:bg-sky-200"
+              onClick={() => setShowCartPreview(!showCartPreview)}
+            >
+              <ShoppingCart className="h-5 w-5" />
+              {cartCount > 0 && (
+                <Badge
+                  className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-red-500"
+                  variant="destructive"
+                >
+                  {cartCount}
+                </Badge>
+              )}
+            </Button>
+            {showCartPreview && (
+              <div className="absolute right-0 mt-2 z-50">
+                <CartPreview onClose={() => setShowCartPreview(false)} />
+              </div>
+            )}
+          </div>
 
           {/* Auth / Profile */}
           {isAuthenticated ? (
