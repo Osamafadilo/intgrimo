@@ -10,6 +10,10 @@ import MaintenancePage from "./MaintenancePage";
 import MaintenanceDetailPage from "./MaintenanceDetailPage";
 import ServiceCategoryPage from "./ServiceCategoryPage";
 import CheckoutPage from "./CheckoutPage";
+import TravelPage from "./TravelPage";
+import TravelDetailPage from "./TravelDetailPage";
+import DeliveryPage from "./DeliveryPage";
+import DeliveryDetailPage from "./DeliveryDetailPage";
 
 export {
   RealEstatePage,
@@ -24,4 +28,8 @@ export {
   MaintenanceDetailPage,
   ServiceCategoryPage,
   CheckoutPage,
+  TravelPage,
+  TravelDetailPage,
+  DeliveryPage,
+  DeliveryDetailPage,
 };

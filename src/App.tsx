@@ -14,6 +14,10 @@ import {
   MaintenanceDetailPage,
   ServiceCategoryPage,
   CheckoutPage,
+  TravelPage,
+  TravelDetailPage,
+  DeliveryPage,
+  DeliveryDetailPage,
 } from "./pages";
 import routes from "tempo-routes";
 
@@ -46,6 +50,10 @@ function App() {
           path="/services/category/:category"
           element={<ServiceCategoryPage />}
         />
+        <Route path="/services/travel" element={<TravelPage />} />
+        <Route path="/services/travel/:id" element={<TravelDetailPage />} />
+        <Route path="/services/delivery" element={<DeliveryPage />} />
+        <Route path="/services/delivery/:id" element={<DeliveryDetailPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         {import.meta.env.VITE_TEMPO && <Route path="/tempobook/*" />}
       </Routes>
