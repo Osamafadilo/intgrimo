@@ -445,25 +445,47 @@ const RestaurantDetailPage: React.FC = () => {
     const code = generateConfirmationCode();
     setConfirmationCode(code);
 
-    // In a real app, this would submit the order to a backend
-    console.log("Order submitted:", {
-      restaurantId: id,
-      items: cart,
-      orderType,
-      paymentMethod,
-      reservationDate: orderType === "dine-in" ? reservationDate : null,
-      reservationTime: orderType === "dine-in" ? reservationTime : null,
-      guestCount: orderType === "dine-in" ? guestCount : null,
-      deliveryAddress: orderType === "delivery" ? deliveryAddress : null,
-      contactPhone,
-      specialInstructions,
-      totalAmount: calculateTotal(),
-      confirmationCode: code,
-    });
+    // Create cart item for the header cart
+    const cartItems = cart.map((cartItem) => ({
+      id: Math.random().toString(36).substr(2, 9),
+      workerId: id || "",
+      workerName: restaurant.name,
+      workerImage: restaurant.image,
+      service: cartItem.item.name,
+      price: cartItem.item.price * cartItem.quantity,
+      date:
+        orderType === "dine-in"
+          ? reservationDate
+          : new Date().toISOString().split("T")[0],
+      time:
+        orderType === "dine-in"
+          ? reservationTime
+          : new Date().toLocaleTimeString(),
+      status: "Pending Confirmation",
+      quantity: cartItem.quantity,
+      orderType: orderType,
+      specialInstructions: specialInstructions,
+      deliveryAddress: orderType === "delivery" ? deliveryAddress : "",
+      contactPhone: contactPhone,
+      paymentMethod: paymentMethod,
+    }));
 
-    // Show confirmation dialog
+    // Get existing cart or create new one
+    const existingCart = localStorage.getItem("serviceCart");
+    const headerCart = existingCart ? JSON.parse(existingCart) : [];
+
+    // Add new items to cart
+    cartItems.forEach((item) => headerCart.push(item));
+
+    // Save updated cart
+    localStorage.setItem("serviceCart", JSON.stringify(headerCart));
+
+    // Close dialog and clear local cart
     setShowOrderDialog(false);
-    setShowConfirmation(true);
+    setCart([]);
+
+    // Navigate to checkout
+    navigate("/checkout");
   };
 
   return (
@@ -690,9 +712,45 @@ const RestaurantDetailPage: React.FC = () => {
                       </div>
                       <Button
                         className="w-full mt-3"
-                        onClick={() => setShowOrderDialog(true)}
+                        onClick={() => {
+                          // Create cart items and add directly to header cart
+                          const cartItems = cart.map((cartItem) => ({
+                            id: Math.random().toString(36).substr(2, 9),
+                            workerId: id || "",
+                            workerName: restaurant.name,
+                            workerImage: restaurant.image,
+                            service: cartItem.item.name,
+                            price: cartItem.item.price * cartItem.quantity,
+                            date: new Date().toISOString().split("T")[0],
+                            time: new Date().toLocaleTimeString(),
+                            status: "Pending Confirmation",
+                            quantity: cartItem.quantity,
+                          }));
+
+                          // Get existing cart or create new one
+                          const existingCart =
+                            localStorage.getItem("serviceCart");
+                          const headerCart = existingCart
+                            ? JSON.parse(existingCart)
+                            : [];
+
+                          // Add new items to cart
+                          cartItems.forEach((item) => headerCart.push(item));
+
+                          // Save updated cart
+                          localStorage.setItem(
+                            "serviceCart",
+                            JSON.stringify(headerCart),
+                          );
+
+                          // Clear local cart
+                          setCart([]);
+
+                          // Navigate to checkout
+                          navigate("/checkout");
+                        }}
                       >
-                        Place Order
+                        إضافة إلى السلة
                       </Button>
                     </>
                   ) : (
@@ -1127,9 +1185,7 @@ const RestaurantDetailPage: React.FC = () => {
               >
                 Cancel
               </Button>
-              <Button type="submit">
-                {orderType === "dine-in" ? "Reserve Table" : "Place Order"}
-              </Button>
+              <Button type="submit">إضافة إلى السلة</Button>
             </DialogFooter>
           </form>
         </DialogContent>
